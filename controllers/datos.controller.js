@@ -9,7 +9,9 @@ const controladorData = {};
 
 controladorData.getData = async(req,res)=>{
     await datos.accesoHoja().then(()=>{
-        res.status(200).send(datos.getData());
+        res.status(200).json({
+            datos:datos.getData()
+        });
     });
     // const resultadosHoja = await datos.accesoHoja();
    

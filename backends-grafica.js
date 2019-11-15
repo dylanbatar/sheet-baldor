@@ -3,7 +3,7 @@ const { promisify } = require('util');
 const credenciales = require('./client_secret.json');
 
 const control = {};
-const dataArray = [];
+let dataArray = [];
 
 const datosEncuesta = (datos) => {
   let obj = {
@@ -16,6 +16,7 @@ const datosEncuesta = (datos) => {
 
 
 control.accesoHoja = async () => {
+  dataArray = [];
   const doc = new gss('1J8FZgKD7hZsFQDRCYVa0kSY7Wub1Z4YmDhyor4KiMRc');
   await promisify(doc.useServiceAccountAuth)(credenciales);
   const info = await promisify(doc.getInfo)();
@@ -23,7 +24,7 @@ control.accesoHoja = async () => {
   const rows = await promisify(hoja.getRows)({
     offset: 1
   });
-
+  
   rows.forEach(row => {
     datosEncuesta(row)
   });
