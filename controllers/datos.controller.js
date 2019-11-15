@@ -1,7 +1,6 @@
 const datos = require('../backends-grafica')
 
 const controladorData = {};
-
 // controladorData.getData = async(res,req)=>{
 //    console.log(datos);
 //    await res.json(datos)
@@ -9,7 +8,11 @@ const controladorData = {};
 
 
 controladorData.getData = async(req,res)=>{
-    res.status(200).send(datos);
+    await datos.accesoHoja().then(()=>{
+        res.status(200).send(datos.getData());
+    });
+    // const resultadosHoja = await datos.accesoHoja();
+   
 };
 
 
