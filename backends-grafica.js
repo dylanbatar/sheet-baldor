@@ -37,4 +37,4 @@ const getData = () =>{
 accesoHoja();
 
 
-module.exports = dataArray;
+module.exports = getData();
